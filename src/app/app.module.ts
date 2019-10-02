@@ -7,16 +7,32 @@ import { AppComponent } from './app.component';
 import { PeliculasService } from './services/peliculas.service';
 
 // MODULES
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { HomeComponent } from './components/home/home.component';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { NavbarComponent } from './components/share/navbar/navbar.component';
+import { PeliculaComponent } from './components/pelicula/pelicula.component';
+
+// ROUTING
+import { APP_ROUTING } from './app.routes';
+import { TarjetaPeliComponent } from './components/share/tarjeta-peli/tarjeta-peli.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    BusquedaComponent,
+    NavbarComponent,
+    PeliculaComponent,
+    TarjetaPeliComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpClientJsonpModule
+    HttpClientJsonpModule,
+    APP_ROUTING,
+    FormsModule
   ],
   providers: [
     PeliculasService
