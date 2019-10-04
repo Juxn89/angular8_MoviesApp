@@ -1,1 +1,21 @@
-<p>pelicula works!</p>
+<div class="m-5">
+    <h1>{{ sTitulo }}</h1>
+    <div class="card mb-3" style="max-width: 60%;">
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                <img [src]="sImagenURL" class="card-img" [alt]="sTitulo">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Sinopsis</b></h5>
+                    <p class="card-text">{{ sSinopsis }}</p>
+                    <h5 class="card-title"><b>Frase celebre</b></h5>
+                    <p class="card-text">{{ sFrase }}</p>
+
+                    <h6><b>Popularidad:</b> <span class="badge badge-primary">{{ nPopularidad }}</span></h6>
+                    <h6><b>Voto promedio:</b> <span class="badge badge-primary">{{ nPromedio }}</span></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

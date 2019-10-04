@@ -3,7 +3,7 @@
         <img src="{{ 'https://image.tmdb.org/t/p/w500_and_h282_face' + p.urlImg }}" class="card-img-top" [alt]="p.nombre">
         <div class="card-body">
             <h5 class="card-title">{{ p.nombre }}</h5>
-            <a class="btn btn-primary">Ver detalle...</a>
+            <a class="btn btn-primary" [routerLink]="['/pelicula', p.id]">Ver detalle...</a>
             <!--<p class="card-text">{{ p.descripcion }}</p>-->
         </div>
     </div>

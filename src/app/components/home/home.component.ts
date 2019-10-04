@@ -13,9 +13,9 @@ export class HomeComponent implements OnInit {
   lstNinos: PeliculaModel[] = [];
 
   constructor(public movieServices: PeliculasService) {
-    this.lstCartelera = this.movieServices.getCarteleraActual();
-    this.lstPopulares = this.movieServices.getCarteleraPopulares();
-    this.lstNinos = this.movieServices.getCarteleraNinios();
+    this.lstCartelera = this.movieServices.getCartelera('CA');
+    this.lstPopulares = this.movieServices.getCartelera('P');
+    this.lstNinos = this.movieServices.getCartelera('CN');
 
     console.log(this.lstNinos);
   }

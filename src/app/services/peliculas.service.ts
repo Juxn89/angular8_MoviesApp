@@ -57,16 +57,35 @@ export class PeliculasService {
     return lstCatelera;
   }
 
-  getCarteleraNinios(): PeliculaModel[] {
+  getCartelera(tipoCategoria: string): PeliculaModel[] {
     const lstCatelera: PeliculaModel[] = [];
 
-    // tslint:disable-next-line: max-line-length
-    const url = `${this.urlMovieDB}/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=${this.apiKey}&language=es&page=1`;
+    let url: string = '';
+
+    if (tipoCategoria === 'CA') {
+      // tslint:disable-next-line: max-line-length
+      url = `${this.urlMovieDB}/discover/movie?primary_release_date.gte=2019-10-02&primary_release_date.lte=2019-10-09&api_key=${this.apiKey}&language=es&page=1`;
+    }
+    if (tipoCategoria === 'P') {
+      // tslint:disable-next-line: max-line-length
+      url = `${this.urlMovieDB}/discover/movie?sort_by=popularity.desc&api_key=${this.apiKey}&language=es&page=1`;
+    }
+    if (tipoCategoria === 'CN') {
+      // tslint:disable-next-line: max-line-length
+      url = `${this.urlMovieDB}/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=${this.apiKey}&language=es&page=1`;
+    }
+
     this.http.jsonp(url, 'callback').subscribe(response => {
+      // console.log(response.results);
       response.results.forEach(e => {
-        lstCatelera.push({ nombre: e.title, descripcion: e.overview, urlImg: e.backdrop_path });
+        lstCatelera.push({ id: e.id, nombre: e.title, descripcion: e.overview, urlImg: e.backdrop_path });
       });
     });
     return lstCatelera;
+  }
+
+  getInfoPelicula(id: number) {
+    const url = `${this.urlMovieDB}/movie/${id}?api_key=${this.apiKey}&language=es`;
+    return this.http.get(url);
   }
 }
