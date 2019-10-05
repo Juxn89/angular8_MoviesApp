@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PeliculasService } from '../../services/peliculas.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class PeliculaComponent implements OnInit {
   nPromedio: number = 0;
   sImagenURL: string = 'https://image.tmdb.org/t/p/w500_and_h282_face';
 
-  constructor(private router: ActivatedRoute, private pelicuaServices: PeliculasService) {
+  constructor(private router: ActivatedRoute,
+              private pelicuaServices: PeliculasService) {
     router.params.subscribe(p => {
       this.id = p['id'];
     });
@@ -34,4 +35,7 @@ export class PeliculaComponent implements OnInit {
   ngOnInit() {
   }
 
+  Regresar() {
+    console.log( this.router );
+  }
 }

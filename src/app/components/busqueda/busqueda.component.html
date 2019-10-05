@@ -1,1 +1,8 @@
-<p>busqueda works!</p>
+<div class="row">
+    <div class="col-md-12">
+        <input type="text" name="txtBuscar" id="txtBuscar" class="form-control text-center" placeholder="Buscar..." #terminoBusqueda (keydown.enter)="buscarPelicula(terminoBusqueda.value)" />
+    </div>
+</div>
+<div class="row m-3">
+    <app-tarjeta-peli [lstPeliculas]='lstPeliculas'></app-tarjeta-peli>
+</div>

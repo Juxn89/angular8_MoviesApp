@@ -25,9 +25,16 @@ export class PeliculasService {
     return this.http.jsonp(url, 'callback');
   }
 
-  buscarPelicula(texto: string) {
-    const url = `${this.urlMovieDB}/searc/movie?query=${texto}&sort_by=popularity.desc&api_key=${this.apiKey}&language=es`;
-    return this.http.jsonp(url, 'callback');
+  buscarPelicula(texto: string): PeliculaModel[] {
+    let lstPeliculas: PeliculaModel[] = [];
+    const url = `${this.urlMovieDB}/search/movie?query=${texto}&sort_by=popularity.desc&api_key=${this.apiKey}&language=es`;
+
+    this.http.get(url).subscribe(response => {
+      response.results.forEach(e => {
+        lstPeliculas.push({ id: e.id, nombre: e.title, descripcion: e.overview, urlImg: e.backdrop_path });
+      });
+    });
+    return lstPeliculas;
   }
 
   // MIS METODOS
@@ -38,7 +45,7 @@ export class PeliculasService {
     const url = `${this.urlMovieDB}/discover/movie?primary_release_date.gte=2019-10-02&primary_release_date.lte=2019-10-09&api_key=${this.apiKey}&language=es&page=1`;
     this.http.jsonp(url, 'callback').subscribe(response => {
       response.results.forEach(e => {
-        lstCatelera.push({ nombre: e.title, descripcion: e.overview, urlImg: e.backdrop_path });
+        lstCatelera.push({ id: e.id, nombre: e.title, descripcion: e.overview, urlImg: e.backdrop_path });
       });
     });
     return lstCatelera;
@@ -51,7 +58,7 @@ export class PeliculasService {
     const url = `${this.urlMovieDB}/discover/movie?sort_by=popularity.desc&api_key=${this.apiKey}&language=es&page=1`;
     this.http.jsonp(url, 'callback').subscribe(response => {
       response.results.forEach(e => {
-        lstCatelera.push({ nombre: e.title, descripcion: e.overview, urlImg: e.backdrop_path });
+        lstCatelera.push({ id: e.id, nombre: e.title, descripcion: e.overview, urlImg: e.backdrop_path });
       });
     });
     return lstCatelera;
