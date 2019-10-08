@@ -20,6 +20,7 @@ import { APP_ROUTING } from './app.routes';
 
 // PIPES
 import { PeliculaImagenPipe } from './pipes/pelicula-imagen.pipe';
+import { GaleriaComponent } from './components/home/galeria.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PeliculaImagenPipe } from './pipes/pelicula-imagen.pipe';
     HomeComponent,
     PeliculaComponent,
     BuscarComponent,
-    PeliculaImagenPipe
+    PeliculaImagenPipe,
+    GaleriaComponent
   ],
   imports: [
     BrowserModule,
