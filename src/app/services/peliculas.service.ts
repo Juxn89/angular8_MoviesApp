@@ -12,15 +12,22 @@ export class PeliculasService {
 
   constructor(private jsonp: JsonpClientBackend, private http: HttpClient) { }
 
+  getCartelera() {
+    let desde = new Date();
+    let hasta = new Date();
+
+    hasta.setDate(hasta.getDate() + 7);
+
+    let desdeStr = `${desde.getFullYear()}-${desde.getMonth() + 1}-${desde.getDay()}`;
+    let hastaStr = `${hasta.getFullYear()}-${hasta.getMonth() + 1}-${hasta.getDay()}`;
+    console.log(hasta.getMonth(), hasta.getMonth() + 1)
+
+    let url = `${this.urlMovieDB}/discover/movie?primary_release_date.gte=${desdeStr}&primary_release_date.lte=${hastaStr}&api_key=${this.apiKey}&language=es`;
+    return this.http.jsonp(url, 'callback');
+  }
+  
   getPopulares() {
     let url = `${this.urlMovieDB}/discover/movie?sort_by=popularity.desc&api_key=${this.apiKey}&language=es`;
-    /*
-    return this.http.get(url).pipe(
-      map(response => console.log(response) )
-    );
-    */
-
-    // UTLIZANDO Jsonp
     return this.http.jsonp(url, 'callback');
   }
 
