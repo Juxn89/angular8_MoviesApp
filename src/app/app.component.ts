@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor(public movieServices: PeliculasService) {
     this.movieServices.getPopulares().subscribe(response => {
-      console.log(response);
+      //console.log(response);
     });
     /*
     this.movieServices.buscarPelicula('spiderman').subscribe(response => {

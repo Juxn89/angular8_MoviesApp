@@ -8,11 +8,18 @@ import { PeliculasService } from './services/peliculas.service';
 
 // MODULES
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+
+// COMPONENTES
 import { NarvarComponent } from './components/narvar/narvar.component';
 import { HomeComponent } from './components/home/home.component';
 import { PeliculaComponent } from './components/pelicula/pelicula.component';
 import { BuscarComponent } from './components/buscar/buscar.component';
+
+// ROUTES
 import { APP_ROUTING } from './app.routes';
+
+// PIPES
+import { PeliculaImagenPipe } from './pipes/pelicula-imagen.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +27,8 @@ import { APP_ROUTING } from './app.routes';
     NarvarComponent,
     HomeComponent,
     PeliculaComponent,
-    BuscarComponent
+    BuscarComponent,
+    PeliculaImagenPipe
   ],
   imports: [
     BrowserModule,

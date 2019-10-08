@@ -18,16 +18,22 @@ export class PeliculasService {
 
     hasta.setDate(hasta.getDate() + 7);
 
-    let desdeStr = `${desde.getFullYear()}-${desde.getMonth() + 1}-${desde.getDay()}`;
-    let hastaStr = `${hasta.getFullYear()}-${hasta.getMonth() + 1}-${hasta.getDay()}`;
-    console.log(hasta.getMonth(), hasta.getMonth() + 1)
+    let desdeStr = `${desde.getFullYear()}-${desde.getMonth() + 1}-${ desde.getDate() < 10 ? "0" + desde.getDate() : desde.getDate() }`;
+    let hastaStr = `${hasta.getFullYear()}-${hasta.getMonth() + 1}-${hasta.getDate()}`;
+     console.log(desdeStr, hastaStr)
 
     let url = `${this.urlMovieDB}/discover/movie?primary_release_date.gte=${desdeStr}&primary_release_date.lte=${hastaStr}&api_key=${this.apiKey}&language=es`;
+    console.log(url);
     return this.http.jsonp(url, 'callback');
   }
   
   getPopulares() {
     let url = `${this.urlMovieDB}/discover/movie?sort_by=popularity.desc&api_key=${this.apiKey}&language=es`;
+    return this.http.jsonp(url, 'callback');
+  }
+
+  getPopularesNinos() {
+    let url = `${this.urlMovieDB}/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=${this.apiKey}&language=es`;
     return this.http.jsonp(url, 'callback');
   }
 
