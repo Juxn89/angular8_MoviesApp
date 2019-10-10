@@ -18,6 +18,7 @@
                 <br>
                 Votos: <span class="badge badge-primary">{{ pelicula.vote_average | number:'.2-2' }}%</span>
             </p>
+            <button [routerLink]="['/' + regresarA, busqueda]" type="button" class="btn btn-outline-danger">Regresar</button>
         </div>        
     </div>
 </div>
