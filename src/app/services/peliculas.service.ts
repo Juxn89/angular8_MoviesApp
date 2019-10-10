@@ -43,6 +43,11 @@ export class PeliculasService {
     return this.http.jsonp(url, 'callback');
   }
 
+  getPelicula(id:string) {
+    let url = `${this.urlMovieDB}/movie/${id}?sort_by=popularity.desc&api_key=${this.apiKey}&language=es`;
+    return this.http.jsonp(url, 'callback');
+  }
+
   tempPeliculas(pelis: any) {
     this.peliculas = pelis;
   }
