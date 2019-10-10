@@ -10,6 +10,8 @@ export class PeliculasService {
   private apiKey: string = 'f270b16e25e0900dfc031cea4605bb77';
   private urlMovieDB: string = 'https://api.themoviedb.org/3';
 
+  peliculas: any = [];
+
   constructor(private jsonp: JsonpClientBackend, private http: HttpClient) { }
 
   getCartelera() {
@@ -20,10 +22,9 @@ export class PeliculasService {
 
     let desdeStr = `${desde.getFullYear()}-${desde.getMonth() + 1}-${ desde.getDate() < 10 ? "0" + desde.getDate() : desde.getDate() }`;
     let hastaStr = `${hasta.getFullYear()}-${hasta.getMonth() + 1}-${hasta.getDate()}`;
-     console.log(desdeStr, hastaStr)
-
+    
     let url = `${this.urlMovieDB}/discover/movie?primary_release_date.gte=${desdeStr}&primary_release_date.lte=${hastaStr}&api_key=${this.apiKey}&language=es`;
-    console.log(url);
+    
     return this.http.jsonp(url, 'callback');
   }
   
@@ -38,7 +39,11 @@ export class PeliculasService {
   }
 
   buscarPelicula(texto: string) {
-    let url = `${this.urlMovieDB}/searc/movie?query=${texto}&sort_by=popularity.desc&api_key=${this.apiKey}&language=es`;
+    let url = `${this.urlMovieDB}/search/movie?query=${texto}&sort_by=popularity.desc&api_key=${this.apiKey}&language=es`;
     return this.http.jsonp(url, 'callback');
+  }
+
+  tempPeliculas(pelis: any) {
+    this.peliculas = pelis;
   }
 }

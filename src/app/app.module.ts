@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { PeliculasService } from './services/peliculas.service';
 
 // MODULES
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 // COMPONENTES
@@ -36,7 +37,8 @@ import { GaleriaComponent } from './components/home/galeria.component';
     BrowserModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    APP_ROUTING
+    APP_ROUTING,
+    FormsModule
   ],
   providers: [
     PeliculasService
